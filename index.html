@@ -1,15 +1,28 @@
 <body>
   <main></main>
 </body>
+
 <script>
-  try {
-    const response = await fetch("http://localhost:5555");
-    const { data }
-  } catch (error) {
-    console.log("erro");
+  async function getContent() {
+    try {
+      const response = await fetch("http://localhost:3333");
+      //console.log(response)
+      const data = await response.json();
+
+      show(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
+  getContent();
 
-  const data = app.json('');
+  function show(users) {
+    let output = "";
 
-  document.querySelector('main').INNERHTML = data
+    for(let user of users){
+      output += `<li>${user.name}</li>`
+    }
+
+    document.querySelector("main").innerHTML = output;
+  }
 </script>
